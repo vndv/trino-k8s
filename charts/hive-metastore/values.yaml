@@ -3,11 +3,21 @@ image:
   tag: 3.1.2
   pullPolicy: IfNotPresent
 
-resources: {}
+resources:
+  limits:
+    memory: "1Gi"
+    cpu: "500m"
+  requests:
+    memory: "512Mi"
+    cpu: "250m"
+
 conf:
   hiveSite:
     hive.metastore.uris: thrift://hive-metastore:9083
-extraEnvVars: []
+
+extraEnvVars:
+  - name: JAVA_OPTS
+    value: "-Xmx512m -Xms256m"
 
 waitDb:
   enabled: true
