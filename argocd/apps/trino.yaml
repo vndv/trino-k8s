@@ -6,12 +6,17 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://trinodb.github.io/charts/
-    targetRevision: "0.7.0"
+    repoURL: https://github.com/vndv/trino-k8s.git
+    targetRevision: HEAD
     chart: trino
     helm:
       valueFiles:
-        - ../../trino/values.yaml
+        - trino/values.yaml
+      parameters:
+        - name: chart.repository
+          value: https://trinodb.github.io/charts/
+        - name: chart.version
+          value: "0.7.0"
   destination:
     server: https://kubernetes.default.svc
     namespace: trino
