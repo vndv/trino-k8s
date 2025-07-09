@@ -11,9 +11,7 @@ spec:
     chart: trino
     helm:
       valueFiles:
-        - values.yaml
-      values: |
-        {{- .Files.Get "trino/values.yaml" | nindent 8 }}
+        - ../../trino/values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: trino
