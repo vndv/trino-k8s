@@ -11,7 +11,7 @@ spec:
     path: charts/hive-metastore
     helm:
       valueFiles:
-        - ../../hive-metastore/values.yaml
+        - values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: trino
