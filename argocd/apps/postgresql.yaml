@@ -7,13 +7,11 @@ spec:
   project: default
   source:
     repoURL: https://charts.bitnami.com/bitnami
-    targetRevision: "*"
+    targetRevision: "12.5.8"
     chart: postgresql
     helm:
       valueFiles:
-        - values.yaml
-      values: |
-        {{- .Files.Get "hive-metastore-postgresql/values.yaml" | nindent 8 }}
+        - ../../hive-metastore-postgresql/values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: trino

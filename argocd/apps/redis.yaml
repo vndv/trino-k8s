@@ -7,13 +7,11 @@ spec:
   project: default
   source:
     repoURL: https://charts.bitnami.com/bitnami
-    targetRevision: "*"
+    targetRevision: "17.11.3"
     chart: redis
     helm:
       valueFiles:
-        - values.yaml
-      values: |
-        {{- .Files.Get "redis/values.yaml" | nindent 8 }}
+        - ../../redis/values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: trino
