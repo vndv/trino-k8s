@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: redis
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://charts.bitnami.com/bitnami
+    targetRevision: "*"
+    chart: redis
+    helm:
+      valueFiles:
+        - values.yaml
+      values: |
+        {{- .Files.Get "redis/values.yaml" | nindent 8 }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: trino
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true 

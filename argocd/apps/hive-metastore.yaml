@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hive-metastore
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/vndv/trino-k8s.git
+    targetRevision: HEAD
+    path: charts/hive-metastore
+    helm:
+      valueFiles:
+        - ../../hive-metastore/values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: trino
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true 
