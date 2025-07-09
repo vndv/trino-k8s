@@ -6,12 +6,17 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://charts.bitnami.com/bitnami
-    targetRevision: "17.11.3"
+    repoURL: https://github.com/vndv/trino-k8s.git
+    targetRevision: HEAD
     chart: redis
     helm:
       valueFiles:
-        - ../../redis/values.yaml
+        - redis/values.yaml
+      parameters:
+        - name: chart.repository
+          value: https://charts.bitnami.com/bitnami
+        - name: chart.version
+          value: "17.11.3"
   destination:
     server: https://kubernetes.default.svc
     namespace: trino
