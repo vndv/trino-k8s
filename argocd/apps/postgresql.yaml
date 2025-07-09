@@ -6,17 +6,15 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/vndv/trino-k8s.git
-    targetRevision: HEAD
+    repoURL: https://charts.bitnami.com/bitnami
+    targetRevision: 12.5.8
     chart: postgresql
     helm:
-      valueFiles:
-        - hive-metastore-postgresql/values.yaml
-      parameters:
-        - name: chart.repository
-          value: https://charts.bitnami.com/bitnami
-        - name: chart.version
-          value: "12.5.8"
+      values: |
+        auth:
+          username: hive
+          database: metastore
+          password: hive
   destination:
     server: https://kubernetes.default.svc
     namespace: trino

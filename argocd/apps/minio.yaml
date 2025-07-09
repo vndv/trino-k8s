@@ -6,17 +6,15 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/vndv/trino-k8s.git
-    targetRevision: HEAD
+    repoURL: https://charts.bitnami.com/bitnami
+    targetRevision: 12.8.4
     chart: minio
     helm:
-      valueFiles:
-        - minio/values.yaml
-      parameters:
-        - name: chart.repository
-          value: https://charts.bitnami.com/bitnami
-        - name: chart.version
-          value: "12.8.4"
+      values: |
+        auth:
+          rootUser: minio_access_key
+          rootPassword: minio_secret_key
+        defaultBuckets: "tiny, warehouse"
   destination:
     server: https://kubernetes.default.svc
     namespace: trino
